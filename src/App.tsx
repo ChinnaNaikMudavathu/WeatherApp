@@ -6,13 +6,17 @@
  */
 
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Provider} from 'react-redux';
+
+import store from './Infrastructure/store/store';
 import RootNavigation from './Infrastructure/Navigation/index';
 
 function App(): React.JSX.Element {
-  return <RootNavigation />;
-}
-
-const styles = StyleSheet.create({});
+  return (
+    <Provider store={store}>
+      <RootNavigation />
+    </Provider>
+  );
+};
 
 export default App;
