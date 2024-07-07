@@ -1,4 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
+import { ForeCast } from '../../Components/DailyForecastWeather/DailyForecastWeather.Models';
 import {apiCall, weatherForecastEndPoint} from '../../NetworkCalls/index';
 import {GetLocationsProps} from '../../NetworkCalls/NetworkCalls.Models';
 import {API_METHODS} from '../../Shared/Constants/index';
@@ -10,17 +11,18 @@ export const fetchForeCastAction = createAsyncThunk(GET_FORECAST_ACTION, async (
         endpoint: weatherForecastEndPoint(params),
         method: API_METHODS.GET,
       });
+
       const modifiedForCastList =
         forecastData?.forecast?.forecastday?.map((foreCast: ForeCast) => {
           return {
             day: foreCast?.day ?? {},
-            date: foreCast?.date,
+            date: foreCast?.date ?? '',
           };
         }) ?? [];
       return {
         forecast: modifiedForCastList,
         currentForecast: {
-          ...forecastData.current,
+          ...forecastData?.current ?? {},
           location: forecastData?.location ?? {},
         },
       };

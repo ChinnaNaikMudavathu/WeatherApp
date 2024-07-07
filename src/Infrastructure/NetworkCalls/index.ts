@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {API_METHODS, WEATHER_FORECAST_API_KET} from '../Shared/Constants/index';
+import {WEATHER_FORECAST_API_KET} from '../Shared/Constants/index';
 import {ApiCallProps, GetLocationsProps} from './NetworkCalls.Models';
 
 export const apiCall = async (params: ApiCallProps) => {
