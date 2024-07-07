@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native";
 
 const DashboardStyles = StyleSheet.create({
-    container: {}
+    container: {flex: 1}
 });
 
 export default DashboardStyles;

@@ -4,99 +4,72 @@ import {SelectedCityCurrentWeatherProps} from './SelectedCityCurrentWeather.Mode
 import SelectedCityCurrentWeatherStyles from './SelectedCityCurrentWeather.styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FeatherIcon from 'react-native-vector-icons/Feather';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+import {useSelector} from 'react-redux';
+import {RootState} from '../../store/store';
 
 const SelectedCityCurrentWeather = (props: SelectedCityCurrentWeatherProps) => {
-  const currentWeatherForeCast = useSelector((state: RootState) => state?.forecast?.currentForecast);
+  const currentWeatherForeCast = useSelector(
+    (state: RootState) => state?.forecast?.currentForecast,
+  );
   return (
     <View style={SelectedCityCurrentWeatherStyles.container}>
-      <View style={{justifyContent: 'center', alignItems: 'center'}}>
-        <Text
-          style={{
-            fontSize: 24,
-            color: '#ffffff',
-            fontWeight: 'bold',
-            marginBottom: 16,
-          }}>
+      <View style={SelectedCityCurrentWeatherStyles.weatherDetailsContainer}>
+        <Text style={SelectedCityCurrentWeatherStyles.selectedCityText}>
           {currentWeatherForeCast?.location?.name ?? ''},{' '}
-          <Text style={{fontSize: 18, color: '#c3d1db', fontWeight: '500'}}>
+          <Text style={SelectedCityCurrentWeatherStyles.selectedCountryText}>
             {currentWeatherForeCast?.location?.country ?? ''}
           </Text>
         </Text>
         <Image
-          style={{
-            width: '45%',
-            height: '45%',
-            marginBottom: 24,
-            borderRadius: 24,
-          }}
+          style={SelectedCityCurrentWeatherStyles.weatherConditionImage}
           source={{
-            uri: `https:${currentWeatherForeCast?.condition?.icon ?? ''}`
+            uri: `https:${currentWeatherForeCast?.condition?.icon ?? ''}`,
           }}
         />
-        <View style={{justifyContent: 'center', alignItems: 'center'}}>
-          <Text style={{fontSize: 50, color: '#ffffff', fontWeight: 'bold'}}>
+        <View style={SelectedCityCurrentWeatherStyles.weatherDetails}>
+          <Text style={SelectedCityCurrentWeatherStyles.weatherDetailsOne}>
             {currentWeatherForeCast?.temp_c ?? 0}&#176;
           </Text>
-          <Text style={{fontSize: 16, color: '#ffffff', fontWeight: '700'}}>
+          <Text style={SelectedCityCurrentWeatherStyles.weatherDetailsTwo}>
             {currentWeatherForeCast?.condition?.text}
           </Text>
         </View>
       </View>
       <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-around',
-          alignItems: 'center',
-          margin: 24,
-          marginBottom: 0,
-        }}>
+        style={SelectedCityCurrentWeatherStyles.selectedCityWeatherInfoContainer}>
         <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          style={SelectedCityCurrentWeatherStyles.selectedCityWeatherInfoSubOneContainer}>
           <FeatherIcon
             name="wind"
             size={16}
             color="#ffffff"
-            style={{marginRight: 4}}
+            style={SelectedCityCurrentWeatherStyles.windIconStyle}
           />
-          <Text style={{fontSize: 16, color: '#ffffff', fontWeight: '700'}}>
+          <Text style={SelectedCityCurrentWeatherStyles.windStyle}>
             {currentWeatherForeCast?.wind_kph ?? 0}km
           </Text>
         </View>
         <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          style={SelectedCityCurrentWeatherStyles.selectedCityWeatherInfoSubTwoContainer}>
           <FeatherIcon
             name="droplet"
             size={16}
             color="#ffffff"
-            style={{marginRight: 4}}
+            style={SelectedCityCurrentWeatherStyles.humidityIcon}
           />
-          <Text style={{fontSize: 16, color: '#ffffff', fontWeight: '700'}}>
+          <Text style={SelectedCityCurrentWeatherStyles.humidityText}>
             {currentWeatherForeCast?.humidity ?? 0}%
           </Text>
         </View>
         <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}>
+          style={SelectedCityCurrentWeatherStyles.dayContainer}>
           <Ionicons
             name="sunny-outline"
             size={16}
             color="#ffffff"
-            style={{marginRight: 4}}
+            style={SelectedCityCurrentWeatherStyles.windIconStyle}
           />
-          <Text style={{fontSize: 16, color: '#ffffff', fontWeight: '700'}}>
+          <Text style={SelectedCityCurrentWeatherStyles.windStyle}>
             6.06 AM
           </Text>
         </View>

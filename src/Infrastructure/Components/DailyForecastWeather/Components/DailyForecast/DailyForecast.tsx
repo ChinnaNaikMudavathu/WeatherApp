@@ -11,13 +11,13 @@ const DailyForecast = (props: DailyForecastProps) => {
   return (
     <View style={DailyForecastStyles.container}>
       <Image
-        style={{width: 35, height: 35, borderRadius: 15}}
+        style={DailyForecastStyles.weatherConditionImage}
         source={{uri: `https:${foreCastInfo?.day?.condition?.icon ?? ''}`}}
       />
-      <Text style={{color: '#c3d1db', fontSize: 16, fontWeight: '500'}}>
+      <Text style={DailyForecastStyles.weatherConditionName}>
         {dayName}
       </Text>
-      <Text style={{color: '#ffffff', fontSize: 24, fontWeight: 'bold'}}>
+      <Text style={DailyForecastStyles.weatherTemperature}>
         {foreCastInfo?.day?.avgtemp_c ?? 0}&#176;
       </Text>
     </View>

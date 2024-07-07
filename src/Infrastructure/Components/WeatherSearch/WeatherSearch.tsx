@@ -1,4 +1,4 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {View, TextInput} from 'react-native';
 import {WeatherSearchProps} from './WeatherSearch.Models';
 import WeatherSearchStyles from './WeatherSearch.styles';
@@ -14,6 +14,7 @@ import {fetchLocationsAction} from '../../store/Actions/getLocations.action';
 import {fetchForeCastAction} from '../../store/Actions/getForecast.action';
 
 import {makeLocationsEmpty} from '../../store/reducers/getLocations.reducer';
+
 import {storeAsyncStorageItem} from '../../AsyncStorage/index';
 import { ASYNC_STORAGE_KEYS } from '../../Shared/Constants/index';
 
@@ -46,23 +47,13 @@ const WeatherSearch = (props: WeatherSearchProps) => {
   return (
     <View style={WeatherSearchStyles.container}>
       <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: '#647d8f',
-          borderRadius: 34,
-          justifyContent: 'space-between',
-        }}>
+        style={WeatherSearchStyles.searchHeaderContainer}>
         <TextInput
           ref={searWeatherRef}
           placeholder="Search city for weather..."
           placeholderTextColor={'#ffffff'}
           onChangeText={weatherCityWithDebounce}
-          style={{
-            padding: 16,
-            borderRadius: 34,
-            color: '#ffffff',
-            fontSize: 16,
-          }}
+          style={WeatherSearchStyles.search}
         />
         <AntDesignIcon
           color={'#ffffff'}

@@ -1,17 +1,22 @@
 import {isEmpty} from 'lodash';
 import React from 'react';
 import {TouchableOpacity} from 'react-native';
-import {ScrollView} from 'react-native';
-import {Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
+import {useSelector} from 'react-redux';
+
 import {SearchedCitiesListProps} from './SearchedCitiesList.Models';
+
 import SearchedCitiesListStyles from './SearchedCitiesList.styles';
+
 import EvilIconsIcons from 'react-native-vector-icons/EvilIcons';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../../store/store';
+
+import {RootState} from '../../../../store/store';
 
 const SearchedCitiesList = (props: SearchedCitiesListProps) => {
-  const { handleOnPressLocation} = props || {locations: []};
-  const locations = useSelector((state: RootState) => state?.locations?.locations);
+  const {handleOnPressLocation} = props || {locations: []};
+  const locations = useSelector(
+    (state: RootState) => state?.locations?.locations,
+  );
   if (isEmpty(locations)) return null;
   return (
     <View style={SearchedCitiesListStyles.container}>
@@ -23,15 +28,21 @@ const SearchedCitiesList = (props: SearchedCitiesListProps) => {
                 locations?.length - 1 !== index ? {borderBottomWidth: 0.5} : {}
               }
               key={city.id}>
-              <TouchableOpacity style={{margin: 16, marginBottom: 8}} onPress={() => {handleOnPressLocation(city)}}>
-                <View style={{flexDirection: 'row'}}>
+              <TouchableOpacity
+                style={SearchedCitiesListStyles.locationButtonContainer}
+                onPress={() => {
+                  handleOnPressLocation(city);
+                }}>
+                <View style={SearchedCitiesListStyles.locationContainer}>
                   <EvilIconsIcons
                     name="location"
                     size={24}
                     color="#ffffff"
-                    style={{marginRight: 4}}
+                    style={SearchedCitiesListStyles.locationIcon}
                   />
-                  <Text style={{fontSize: 20, color: 'black', flex: 1}} numberOfLines={2} >
+                  <Text
+                    style={SearchedCitiesListStyles.locationText}
+                    numberOfLines={2}>
                     {city?.name}, {city.country}
                   </Text>
                 </View>

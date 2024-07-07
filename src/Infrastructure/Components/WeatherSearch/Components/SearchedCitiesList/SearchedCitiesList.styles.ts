@@ -10,6 +10,10 @@ const SearchedCitiesListStyles = StyleSheet.create({
     width: '100%',
     borderRadius: 34,
   },
+  locationButtonContainer: {margin: 16, marginBottom: 8},
+  locationContainer: {flexDirection: 'row'},
+  locationIcon: {marginRight: 4},
+  locationText: {fontSize: 20, color: 'black', flex: 1}
 });
 
 export default SearchedCitiesListStyles;
