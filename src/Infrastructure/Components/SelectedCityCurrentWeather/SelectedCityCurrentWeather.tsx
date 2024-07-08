@@ -11,6 +11,7 @@ const SelectedCityCurrentWeather = (props: SelectedCityCurrentWeatherProps) => {
   const currentWeatherForeCast = useSelector(
     (state: RootState) => state?.forecast?.currentForecast,
   );
+  const forecastUpdatedTime = new Date(currentWeatherForeCast?.last_updated ?? '');
   return (
     <View style={SelectedCityCurrentWeatherStyles.container}>
       <View style={SelectedCityCurrentWeatherStyles.weatherDetailsContainer}>
@@ -70,7 +71,7 @@ const SelectedCityCurrentWeather = (props: SelectedCityCurrentWeatherProps) => {
             style={SelectedCityCurrentWeatherStyles.windIconStyle}
           />
           <Text style={SelectedCityCurrentWeatherStyles.windStyle}>
-            6.06 AM
+            {`${forecastUpdatedTime.getHours()}:${forecastUpdatedTime.getMinutes()} ${forecastUpdatedTime.getHours()/12 ? 'PM' : 'AM'}`}
           </Text>
         </View>
       </View>

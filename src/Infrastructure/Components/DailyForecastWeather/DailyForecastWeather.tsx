@@ -1,7 +1,7 @@
 import {isEmpty} from 'lodash';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator} from 'react-native';
-import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Text, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {getAsyncStorageItem} from '../../AsyncStorage/index';
@@ -47,12 +47,7 @@ const DailyForecastWeather = (props: DailyForecastWeatherProps) => {
     fetchInitialWeatherForecast();
   }, []);
 
-  const handleOnPressMainContainer = () => {
-    Keyboard.dismiss();
-  };
-
   return (
-    <TouchableWithoutFeedback onPress={handleOnPressMainContainer}>
       <View style={DailyForecastWeatherStyles.container}>
         <WeatherSearch />
         {isWeatherForeCastLoading ? (
@@ -62,7 +57,7 @@ const DailyForecastWeather = (props: DailyForecastWeatherProps) => {
             color={'#ffffff'}
           />
         ) : (
-          <View style={DailyForecastWeatherStyles.container}>
+          <View>
             <SelectedCityCurrentWeather />
             <View style={DailyForecastWeatherStyles.forecastContainer}>
               <AntDesignIcon
@@ -79,7 +74,6 @@ const DailyForecastWeather = (props: DailyForecastWeatherProps) => {
           </View>
         )}
       </View>
-    </TouchableWithoutFeedback>
   );
 };
 

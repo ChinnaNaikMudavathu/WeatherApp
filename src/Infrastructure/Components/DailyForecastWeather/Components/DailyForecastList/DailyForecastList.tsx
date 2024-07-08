@@ -14,7 +14,7 @@ const DailyForecastList = (props: DailyForecastListProps) => {
     return (
       <View
         key={item?.day?.condition?.icon + index}
-        style={index === 0 ? {marginLeft: 8} : {marginRight: 8}}>
+        style={index === 0 ? {marginLeft: 8, marginRight: 8} : {marginRight: 8}}>
         <DailyForecast foreCastInfo={item} />
       </View>
     );
