@@ -3,13 +3,13 @@ import {StyleSheet} from 'react-native';
 const SelectedCityCurrentWeather = StyleSheet.create({
   container: {},
   weatherDetailsContainer: {justifyContent: 'center', alignItems: 'center'},
-  selectedCountryText: {
+  selectedCityText: {
     fontSize: 24,
     color: '#ffffff',
     fontWeight: 'bold',
     marginBottom: 16,
   },
-  selectedCityText: {fontSize: 18, color: '#c3d1db', fontWeight: '500'},
+  selectedCountryText: {fontSize: 18, color: '#c3d1db', fontWeight: '500'},
   weatherConditionImage: {
     width: '45%',
     height: '45%',
