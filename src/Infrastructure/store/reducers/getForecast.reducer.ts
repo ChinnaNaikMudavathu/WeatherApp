@@ -5,6 +5,7 @@ import {GET_FORECAST_REDUCER} from '../Types';
 const initialForecastState = {
   forecast: [],
   currentForecast: {},
+  isWeatherForeCastLoading: false,
 };
 
 export const getForecastReducer = createSlice({
@@ -12,13 +13,20 @@ export const getForecastReducer = createSlice({
   initialState: initialForecastState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(fetchForeCastAction?.fulfilled, (state, action) => {
-      return {
-        ...state,
-        forecast: action?.payload?.forecast ?? [],
-        currentForecast: action?.payload?.currentForecast ?? {},
-      };
-    });
+    builder
+      .addCase(fetchForeCastAction?.pending, (state, action) => {
+        return {...state, isWeatherForeCastLoading: true};
+      })
+      .addCase(fetchForeCastAction?.fulfilled, (state, action) => {
+        return {
+          ...state,
+          forecast: action?.payload?.forecast ?? [],
+          currentForecast: action?.payload?.currentForecast ?? {},
+          isWeatherForeCastLoading: false,
+        };
+      }).addCase(fetchForeCastAction.rejected, (state, action) => {
+        return {...state, forecast: [], currentForecast: {}, isWeatherForeCastLoading: false}
+      })
   },
 });
 

@@ -2,7 +2,7 @@ import {isEmpty} from 'lodash';
 import React, {useEffect, useState} from 'react';
 import {ActivityIndicator} from 'react-native';
 import {Keyboard, Text, TouchableWithoutFeedback, View} from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 
 import {getAsyncStorageItem} from '../../AsyncStorage/index';
 import {ASYNC_STORAGE_KEYS} from '../../Shared/Constants/index';
@@ -20,10 +20,10 @@ import {DailyForecastWeatherProps} from './DailyForecastWeather.Models';
 import DailyForecastWeatherStyles from './DailyForecastWeather.styles';
 
 import AntDesignIcon from 'react-native-vector-icons/AntDesign';
+import { RootState } from '../../store/store';
 
 const DailyForecastWeather = (props: DailyForecastWeatherProps) => {
-  const [isWeatherForeCastLoading, setIsWeatherForeCastLoading] =
-    useState(false);
+    const isWeatherForeCastLoading = useSelector((state: RootState) => state?.forecast?.isWeatherForeCastLoading);
   const dispatch = useDispatch();
   const fetchInitialWeatherForecast = async () => {
     try {
